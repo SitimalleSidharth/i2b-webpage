@@ -1,0 +1,201 @@
+/* html {
+  scroll-behavior: smooth;
+}
+
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #070B12;
+  --color-deep: #05070D;
+  --color-panel: #0B1020;
+  --color-card: #0D1320;
+  --color-primary: #6AE3FF;
+  --color-accent: #7C7CFF;
+  --color-muted: #9CA3AF;
+}
+
+.soft-glow {
+  position: relative;
+}
+.soft-glow::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(106,227,255,0.12), transparent 60%);
+  z-index: -1;
+}
+
+
+body {
+  background: var(--color-bg);
+  color: white;
+  font-family: var(--font-body);
+}
+
+
+@layer components {
+  .input {
+    @apply w-full bg-[color:var(--color-card)] text-white placeholder:text-muted border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[color:var(--color-primary)] transition;
+  }
+}
+
+.btn-glow {
+  position: relative;
+}
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(106,227,255,.25), transparent 70%);
+  opacity: 0;
+  transition: .4s ease;
+}
+.btn-glow:hover::after {
+  opacity: 1;
+}
+
+
+@layer base {
+  section {
+    transition: all 0.8s cubic-bezier(.4,0,.2,1);
+  }
+   * {
+    scroll-behavior: smooth;
+  }
+  p { line-height: 1.7; }
+  h1,h2,h3 { line-height: 1.15; }
+
+  .ease-soft {
+    transition: all .6s cubic-bezier(.4,0,.2,1);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  .section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #6AE3FF55, transparent);
+  margin: 6rem 0;
+}
+
+@media (max-width:768px) {
+  section { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+}
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+ */
+
+ @import "tailwindcss";
+
+@theme {
+  --font-heading: "Satoshi", sans-serif;
+  --font-body: "Satoshi", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-bg: #030509;
+  --color-panel: #0B1020;
+  --color-card: rgba(13, 19, 32, 0.6);
+  --color-primary: #6AE3FF;
+  --color-accent: #7C7CFF;
+  --color-muted: #9CA3AF;
+  --color-border: rgba(255, 255, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  /* Mesh Gradient Background */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(106, 227, 255, 0.07) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(124, 124, 255, 0.07) 0px, transparent 50%);
+  color: white;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* UI Enhancement Classes */
+.glass-card {
+  background: var(--color-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(106, 227, 255, 0.3);
+  box-shadow: 0 0 30px rgba(106, 227, 255, 0.05);
+}
+
+.text-reveal {
+  background: linear-gradient(to bottom, #ffffff 40%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@layer components {
+  .input {
+    @apply w-full bg-white/5 text-white placeholder:text-muted border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary transition-all duration-300 focus:bg-white/10;
+  }
+  
+  .btn-primary {
+    @apply px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-black font-bold shadow-[0_0_20px_rgba(106,227,255,0.3)] hover:shadow-[0_0_30px_rgba(106,227,255,0.5)] hover:scale-105 transition-all duration-300;
+  }
+}
+
+
+/* Add to your index.css */
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.15;
+  animation: float 20s infinite ease-in-out;
+}
+
+.orb-primary { background: var(--color-primary); }
+.orb-accent { background: var(--color-accent); }
+
+/* Optimization for Lag */
+* {
+  backface-visibility: hidden; /* Forcing GPU rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass-card {
+  will-change: transform, opacity; /* Tells browser to optimize these layers */
+}
+
+/* Texture overlay for the whole site to hide flat colors */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
