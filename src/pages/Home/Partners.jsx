@@ -40,14 +40,16 @@ export default function Partners() {
   };
 
   return (
-    <section id="collab" className="py-24 md:py-32 bg-bg overflow-hidden min-h-screen flex flex-col justify-center">
-      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
-        <h2 className="font-heading text-4xl md:text-6xl font-bold mb-3 text-reveal">Who We Partner With</h2>
-        <p className="text-muted mt-4">We collaborate with builders who prioritize strategic, long-term outcomes.</p>
+    <section id="collab" className="py-24 md:py-20 bg-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+        <h2 className="font-heading text-[2.3rem] md:text-6xl font-bold mb-3 text-reveal">Who We Partner With</h2>
+        <p className="text-muted mt-4 max-w-md mx-auto text-[15px] leading-relaxed">
+          We collaborate with builders who prioritize strategic, long-term outcomes.
+        </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="relative h-[380px] sm:h-[420px] md:h-[65vh] mb-10">
+        <div className="relative h-[320px] sm:h-[360px] md:h-[65vh] mb-10">
           <AnimatePresence initial={false} custom={direction} mode="popLayout">
             <motion.div
               key={currentIndex}
@@ -71,14 +73,19 @@ export default function Partners() {
               transition={{ x: { type: "spring", stiffness: 260, damping: 25 }, opacity: { duration: 0.3 } }}
               className="absolute inset-0 will-change-transform"
             >
-              <div className="relative w-full h-full rounded-[2rem] md:rounded-[3.5rem] overflow-hidden glass-card bg-panel group">
-                <img loading="lazy" src={slides[currentIndex].img} alt={slides[currentIndex].title} className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent" />
-                <div className="absolute bottom-0 p-6 sm:p-10 md:p-20">
-                  <h3 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-6 text-white">
+              <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-[#0f0f0f] border border-white/10">
+                <img
+                  loading="lazy"
+                  src={slides[currentIndex].img}
+                  alt={slides[currentIndex].title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+                <div className="absolute bottom-0 p-6 sm:p-8 md:p-10">
+                  <h3 className="font-heading text-[18px] sm:text-xl md:text-3xl font-semibold mb-2 text-primary">
                     {slides[currentIndex].title}
                   </h3>
-                  <p className="text-muted text-sm sm:text-base md:text-xl max-w-xl md:max-w-3xl leading-relaxed">
+                  <p className="text-gray-300 text-[14px] sm:text-sm md:text-base leading-relaxed max-w-xl">
                     {slides[currentIndex].text}
                   </p>
                 </div>

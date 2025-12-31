@@ -3,9 +3,9 @@ import { useRef, useMemo } from "react";
 
 const keywords = [
   "AI-FIRST", "VENTURE STUDIO", "PRODUCT LAB", "FOUNDER-CENTRIC",
-  "LLMS", "NEURAL NETS", "AUTOMATION", "CLOUD ARCHITECTURE", 
-  "DATA SYSTEMS", "MACHINE LEARNING", "FINTECH", "SAAS", 
-  "SUPPLY CHAIN", "EDTECH", "HEALTHTECH", "LOGISTICS", 
+  "LLMS", "NEURAL NETS", "AUTOMATION", "CLOUD ARCHITECTURE",
+  "DATA SYSTEMS", "MACHINE LEARNING", "FINTECH", "SAAS",
+  "SUPPLY CHAIN", "EDTECH", "HEALTHTECH", "LOGISTICS",
   "B2B PLATFORMS", "SCALABLE", "INTELLIGENT", "INCUBATION"
 ];
 
@@ -24,8 +24,8 @@ function FloatingTile({ text, x, y, delay }) {
         delay,
         ease: "easeInOut"
       }}
-      className="absolute px-3 py-1 rounded-full border border-white/5 bg-white/5 text-[8px] md:text-[10px] font-mono text-primary/40 tracking-widest whitespace-nowrap pointer-events-none"
-      style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
+      className="absolute max-w-[90vw] truncate px-3 py-1 rounded-full border border-white/5 bg-white/5 text-[8px] md:text-[10px] font-mono text-primary/40 tracking-widest whitespace-nowrap pointer-events-none"
+      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
     >
       {text}
     </motion.div>
@@ -55,30 +55,33 @@ export default function Hero() {
 
       {/* Floating tiles only on desktop */}
       {isDesktop && (
-        <div className="absolute inset-0 z-0 hidden md:block">
+        <div className="absolute inset-0 z-0 hidden md:block overflow-hidden">
           {gridTiles.map((tile, i) => <FloatingTile key={i} {...tile} />)}
         </div>
       )}
 
-      <div className="absolute inset-0 z-1 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(106,227,255,0.12),transparent_65%)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(106,227,255,0.12),transparent_65%)]" />
 
-      <motion.div style={{ y: contentY, opacity }} className="relative z-10 text-center max-w-5xl px-6">
+      <motion.div
+        style={{ y: contentY, opacity }}
+        className="relative z-10 text-center max-w-5xl px-6 pt-24 sm:pt-0 pb-16 sm:pb-0"
+      >
         <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-mono tracking-widest uppercase border border-primary/30 rounded-full text-primary bg-primary/5">
           The Future of Venture Engineering
         </span>
 
-        <h1 className="font-heading text-4xl md:text-8xl font-bold leading-tight text-reveal mb-8">
+        <h1 className="font-heading text-[2.4rem] sm:text-5xl md:text-8xl font-bold leading-[1.12] mb-8 text-reveal">
           Building the Future of <br />
           <span className="italic">Intelligent</span> Businesses
         </h1>
 
-        <p className="text-muted text-base md:text-xl max-w-2xl mx-auto mb-10">
+        <p className="text-muted text-[15px] sm:text-lg max-w-sm sm:max-w-2xl mx-auto mb-12 leading-relaxed">
           I2B is a founder-centric venture studio creating AI-led platforms.
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#contact" className="btn-primary">Build With Us</a>
-          <a href="#whatwedo" className="px-8 py-4 rounded-xl border border-white/10 text-white font-semibold hover:bg-white/5 transition-all">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-sm mx-auto">
+          <a href="#contact" className="btn-primary w-full sm:w-auto">Build With Us</a>
+          <a href="#whatwedo" className="px-8 py-4 rounded-xl border border-white/10 text-white font-semibold hover:bg-white/5 transition-all w-full sm:w-auto">
             Explore Our Work
           </a>
         </div>
