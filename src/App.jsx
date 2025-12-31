@@ -1,62 +1,44 @@
-import { Route, Routes, useLocation } from "react-router-dom"
-import AboutUs from "./pages/Home/AboutUs"
-import Contact from "./components/Contact"
-import Founder from "./pages/Home/Founder.jsx"
-import Hero from "./pages/Home/Hero"
-import Navbar from "./components/Navbar"
-import Partners from "./pages/Home/Partners"
-import Vision from "./pages/Home/Vision"
-import WhatWeDo from "./pages/Home/WhatWeDo"
-import WhyUs from "./pages/Home/WhyUs"
-import Careers from "./pages/Careers/Careers"
-import { useEffect } from "react"
-import Footer from "./components/Footer.jsx"
+import { lazy, Suspense, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// Lazy Load for Performance
+const Home = lazy(() => import("./pages/Home/Home.jsx"));
+const Careers = lazy(() => import("./pages/Careers/Careers.jsx"));
 
 export default function App() {
-
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // If there's a hash in the URL (e.g., #about), scroll to it
     if (hash) {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100); // Small delay to ensure the DOM is ready
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
       }
     } else {
-      window.scrollTo(0, 0); // Scroll to top on page change if no hash
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [pathname, hash]);
+
   return (
-     <div className="relative overflow-hidden selection:bg-primary selection:text-black">
-      {/* Global Background Orbs */}
-      {/* <div className="ambient-orb orb-primary w-[600px] h-[600px] -top-20 -left-20" /> */}
-      <div className="ambient-orb orb-accent w-[500px] h-[500px] top-[20%] -right-20 animation-delay-2000" style={{ animationDuration: '25s' }} />
-      <div className="ambient-orb orb-primary w-[700px] h-[700px] top-[60%] -left-40" style={{ animationDuration: '30s' }} />
+    <div className="relative selection:bg-primary selection:text-black">
+      <div className="ambient-orb orb-accent w-[300px] h-[300px] md:w-[500px] md:h-[500px] top-[10%] -right-20" />
+      <div className="ambient-orb orb-primary w-[400px] h-[400px] md:w-[700px] md:h-[700px] top-[60%] -left-40" />
       
       <Navbar />
       
-      <Routes>
-        <Route path="/" element={
-          <main>
-            <Hero />
-            <Founder />
-            <AboutUs />
-            <WhatWeDo />
-            <Partners />
-            <WhyUs />
-            <Vision />
-            <Contact />
-          </main>
-        } />
-        <Route path="/careers" element={<Careers />} />
-      </Routes>
+      <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary">I2B_LOADING...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/careers" element={<Careers />} />
+        </Routes>
+      </Suspense>
 
-     
       <Footer />
     </div>
-  )
+  );
 }

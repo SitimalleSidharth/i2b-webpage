@@ -4,28 +4,25 @@ export default function Careers() {
     { title: "AI / ML Engineer", type: "Full-Time | Hybrid" },
     { title: "Product Manager", type: "Full-Time | Hyderabad" },
     { title: "Startup Associate", type: "Internship" },
-  ]
+  ];
 
   return (
-    <section className="min-h-screen bg-[color:var(--color-bg)] px-6 py-32">
+    <section className="min-h-screen bg-bg px-6 py-32">
       <div className="max-w-5xl mx-auto">
-        <h1 className="font-heading text-4xl mb-6">Careers at I2B</h1>
-        <p className="text-muted mb-10">
-          Join us to build next-generation technology companies.
-        </p>
-
+        <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">Careers at I2B</h1>
+        <p className="text-muted text-lg mb-12">Join us to build next-generation technology companies.</p>
         <div className="space-y-6">
-          {roles.map((r,i)=>(
-            <div key={i} className="bg-[color:var(--color-card)]/70 p-6 rounded-xl border border-white/10 flex justify-between items-center hover:shadow-glow transition">
+          {roles.map((r, i) => (
+            <div key={i} className="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:row justify-between items-start md:items-center gap-4 hover:border-primary/50 transition-all">
               <div>
-                <h3 className="font-heading">{r.title}</h3>
-                <p className="text-muted text-sm">{r.type}</p>
+                <h3 className="font-heading text-xl font-bold">{r.title}</h3>
+                <p className="text-muted text-sm mt-1">{r.type}</p>
               </div>
-              <a href="#" className="text-primary">Apply →</a>
+              <a href="#" className="text-primary font-bold hover:underline">Apply Now →</a>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
