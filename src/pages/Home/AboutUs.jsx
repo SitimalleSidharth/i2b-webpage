@@ -10,7 +10,7 @@ export default function AboutUs() {
   return (
     <section id="about" ref={targetRef} className="py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-heading text-4xl font-bold mb-4 text-white">About I2B</h2>
+        <h2 className="font-heading text-4xl md:text-6xl font-bold mb-8 text-reveal">About I2B</h2>
         <div className="h-1 w-20 bg-primary rounded-full mb-12" />
 
         <div className="grid md:grid-cols-12 gap-6">

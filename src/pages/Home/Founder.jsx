@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import FounderImage from '../../assets/founder.webp';
+import FounderImage from '../../assets/Deepak_Gullapali.jpg';
 
 export default function Founder() {
   const containerRef = useRef(null);
@@ -27,10 +27,10 @@ export default function Founder() {
 
         <div className="md:col-span-5 relative group mt-12 md:mt-0">
           <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-primary/20 to-accent/20 blur-2xl opacity-50" />
-          <motion.div style={{ y: imgY }} className="relative rounded-[2.5rem] overflow-hidden border border-white/10 aspect-[4/5] bg-panel">
+          <motion.div style={{ y: imgY }} className="relative rounded-[2.5rem] overflow-hidden border border-white/10 aspect-[5/6] bg-panel">
             <img src={FounderImage} alt="Founder" className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700" />
           </motion.div>
-          <motion.div style={{ y: noteY }} className="absolute -bottom-6 -left-0 md:-left-10 glass-card p-6 md:p-8 rounded-3xl border-l-4 border-primary max-w-xs shadow-2xl">
+          <motion.div style={{ y: noteY }} className="absolute -bottom-10 -left-0 md:-left-10 glass-card p-6 md:p-8 rounded-3xl border-l-4 border-primary max-w-xs shadow-2xl">
             <p className="italic font-medium text-sm md:text-base">“Having spent more than two decades building and scaling a consumer internet business, I believe the next wave of opportunity lies in combining AI with deep product thinking and operational clarity. Through i2b.in, my goal is to build and support companies that are not only innovative, but also responsible, resilient, and enduring.”</p>
           </motion.div>
         </div>

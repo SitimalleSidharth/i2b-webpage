@@ -56,7 +56,7 @@ export default function Hero() {
         </span>
         <h1 className="font-heading text-4xl md:text-8xl font-bold leading-tight text-reveal mb-8">
           Building the Future of <br />
-          <span className="text-primary italic">Intelligent</span> Businesses
+          <span className="italic">Intelligent</span> Businesses
         </h1>
         <p className="text-muted text-base md:text-xl max-w-2xl mx-auto mb-10">
           I2B is a founder-centric venture studio creating AI-led platforms. We transform ideas into enduring technology systems.

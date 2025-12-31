@@ -155,7 +155,7 @@ export default function WhatWeDo() {
       <div className="max-w-7xl mx-auto">
         
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">What We Do</h2>
+          <h2 className="font-heading text-4xl md:text-6xl font-bold mb-8 text-reveal">What We Do</h2>
           <p className="text-gray-400 max-w-xl">
             Transforming complex industries through intelligent engineering.
           </p>

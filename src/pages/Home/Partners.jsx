@@ -60,9 +60,9 @@ export default function Partners() {
 
   return (
     <section id="partners" className="py-24 md:py-32 bg-bg overflow-hidden min-h-screen flex flex-col justify-center">
-      <div className="max-w-7xl mx-auto px-6 mb-10">
-        <h2 className="font-heading text-4xl md:text-5xl font-bold text-white">Who We Partner With</h2>
-        <p className="text-muted mt-4">We look for builders who think in decades, not quarters.</p>
+      <div className="max-w-7xl mx-auto px-6 mb-10 flex items-center flex-col">
+        <h2 className="font-heading text-4xl md:text-6xl font-bold mb-3 text-reveal">Who We Partner With</h2>
+        <p className="text-muted mt-4">We collaborate with builders who prioritize strategic, long-term outcomes.</p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 w-full">
