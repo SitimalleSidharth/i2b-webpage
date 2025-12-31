@@ -13,7 +13,7 @@ function FloatingTile({ text, x, y, delay }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: [0.1, 0.3, 0.1] }}
+      animate={{ opacity: [0.4, 0.6, 0.4] }}
       transition={{ duration: 5, repeat: Infinity, delay }}
       className="absolute px-3 py-1 rounded-full border border-white/5 bg-white/5 text-[8px] md:text-[10px] font-mono text-primary/40 tracking-widest whitespace-nowrap pointer-events-none"
       style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
