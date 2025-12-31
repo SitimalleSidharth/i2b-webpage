@@ -14,7 +14,7 @@ function FloatingTile({ text, x, y, delay }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{
-        opacity: [0.3, 0.55, 0.3],
+        opacity: [0.4, 0.55, 0.4],
         x: [0, 12, -12, 0],
         y: [0, -10, 10, 0],
       }}
@@ -34,13 +34,12 @@ function FloatingTile({ text, x, y, delay }) {
 
 export default function Hero() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ 
-    target: containerRef, 
-    offset: ["start start", "end start"] 
-  });
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
 
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const isDesktop = typeof window !== "undefined" && window.innerWidth > 768;
 
   const gridTiles = useMemo(() => {
     return keywords.map((text, i) => ({
@@ -52,29 +51,18 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[color:var(--color-deep)]"
-    >
-      {/* Floating background tiles */}
-      <div className="absolute inset-0 z-0 hidden md:block">
-        {gridTiles.map((tile, i) => <FloatingTile key={i} {...tile} />)}
-      </div>
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg">
 
-      {/* Cinematic depth fade */}
-      <div className="absolute inset-0 z-1 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[color:var(--color-deep)] to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[color:var(--color-deep)] via-[color:var(--color-bg)] to-transparent" />
-      </div>
+      {/* Floating tiles only on desktop */}
+      {isDesktop && (
+        <div className="absolute inset-0 z-0 hidden md:block">
+          {gridTiles.map((tile, i) => <FloatingTile key={i} {...tile} />)}
+        </div>
+      )}
 
-      {/* Soft atmospheric fog */}
-      <div className="absolute inset-0 z-1 bg-[radial-gradient(circle_at_50%_40%,rgba(106,227,255,0.12),transparent_65%)] pointer-events-none" />
+      <div className="absolute inset-0 z-1 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(106,227,255,0.12),transparent_65%)]" />
 
-      {/* Main content */}
-      <motion.div
-        style={{ y: contentY, opacity }}
-        className="relative z-10 text-center max-w-5xl px-6"
-      >
+      <motion.div style={{ y: contentY, opacity }} className="relative z-10 text-center max-w-5xl px-6">
         <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-mono tracking-widest uppercase border border-primary/30 rounded-full text-primary bg-primary/5">
           The Future of Venture Engineering
         </span>
@@ -85,7 +73,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-muted text-base md:text-xl max-w-2xl mx-auto mb-10">
-          I2B is a founder-centric venture studio creating AI-led platforms. We transform ideas into enduring technology systems.
+          I2B is a founder-centric venture studio creating AI-led platforms.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">

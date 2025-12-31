@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const slides = [
   { title: "Early-Stage Founders", text: "Builders with strong product intuition and long-term thinking.", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&q=80" },
@@ -20,7 +20,7 @@ export default function Partners() {
     stopTimer();
     timerRef.current = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
+      setCurrentIndex(prev => (prev + 1) % slides.length);
     }, 4000);
   }, []);
 
@@ -28,39 +28,20 @@ export default function Partners() {
     if (timerRef.current) clearInterval(timerRef.current);
   }, []);
 
-  const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
-    startTimer();
-  };
-
-  const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-    startTimer();
-  };
-
   useEffect(() => {
     startTimer();
-    return () => stopTimer();
+    return stopTimer;
   }, [startTimer, stopTimer]);
 
-  const variants = {
-    enter: (direction) => ({
-      x: direction > 0 ? "20%" : "-20%",
-      opacity: 0
-    }),
-    center: { x: 0, opacity: 1, zIndex: 1 },
-    exit: (direction) => ({
-      x: direction < 0 ? "20%" : "-20%",
-      opacity: 0,
-      zIndex: 0
-    })
+  const paginate = dir => {
+    setDirection(dir);
+    setCurrentIndex(prev => (prev + dir + slides.length) % slides.length);
+    startTimer();
   };
 
   return (
     <section id="collab" className="py-24 md:py-32 bg-bg overflow-hidden min-h-screen flex flex-col justify-center">
-      <div className="max-w-7xl mx-auto px-6 mb-10 flex items-center flex-col">
+      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
         <h2 className="font-heading text-4xl md:text-6xl font-bold mb-3 text-reveal">Who We Partner With</h2>
         <p className="text-muted mt-4">We collaborate with builders who prioritize strategic, long-term outcomes.</p>
       </div>
@@ -71,7 +52,11 @@ export default function Partners() {
             <motion.div
               key={currentIndex}
               custom={direction}
-              variants={variants}
+              variants={{
+                enter: d => ({ x: d > 0 ? "20%" : "-20%", opacity: 0 }),
+                center: { x: 0, opacity: 1, zIndex: 1 },
+                exit: d => ({ x: d < 0 ? "20%" : "-20%", opacity: 0, zIndex: 0 })
+              }}
               initial="enter"
               animate="center"
               exit="exit"
@@ -80,21 +65,14 @@ export default function Partners() {
               dragElastic={1}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = swipePower(offset.x, velocity.x);
-                if (swipe < -swipeConfidenceThreshold) handleNext();
-                else if (swipe > swipeConfidenceThreshold) handlePrev();
+                if (swipe < -swipeConfidenceThreshold) paginate(1);
+                else if (swipe > swipeConfidenceThreshold) paginate(-1);
               }}
-              transition={{
-                x: { type: "spring", stiffness: 260, damping: 25 },
-                opacity: { duration: 0.3 }
-              }}
-              className="absolute inset-0"
+              transition={{ x: { type: "spring", stiffness: 260, damping: 25 }, opacity: { duration: 0.3 } }}
+              className="absolute inset-0 will-change-transform"
             >
               <div className="relative w-full h-full rounded-[2rem] md:rounded-[3.5rem] overflow-hidden glass-card bg-panel group">
-                <img
-                  src={slides[currentIndex].img}
-                  alt={slides[currentIndex].title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-105"
-                />
+                <img loading="lazy" src={slides[currentIndex].img} alt={slides[currentIndex].title} className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent" />
                 <div className="absolute bottom-0 p-6 sm:p-10 md:p-20">
                   <h3 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-6 text-white">
@@ -111,13 +89,7 @@ export default function Partners() {
 
         <div className="flex justify-center items-center gap-3">
           {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === currentIndex ? "w-16 bg-primary" : "w-3 bg-white/10 hover:bg-white/30"
-              }`}
-            />
+            <button key={i} onClick={() => paginate(i - currentIndex)} className={`h-1.5 rounded-full transition-all duration-500 ${i === currentIndex ? "w-16 bg-primary" : "w-3 bg-white/10 hover:bg-white/30"}`} />
           ))}
         </div>
       </div>

@@ -14,14 +14,30 @@
   --color-border: rgba(255, 255, 255, 0.08);
 }
 
+#app-root {
+  width: 100%;
+  overflow-x: clip;
+}
+
+/* GLOBAL STABILITY */
 html, body {
   scroll-behavior: smooth;
   background-color: var(--color-bg);
   color: white;
   width: 100%;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
   margin: 0;
   padding: 0;
+}
+
+
+/* Reduce Motion Mode (auto enabled on mobile) */
+.reduce-motion *, 
+.reduce-motion *::before, 
+.reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
 }
 
 /* Fix for the white-on-white heading issue */
@@ -30,8 +46,7 @@ html, body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Fallback for browsers/modes where clip doesn't work */
-  color: white; 
+  color: white;
 }
 
 @layer components {
@@ -66,19 +81,10 @@ html, body {
 .orb-accent { background: var(--color-accent); }
 
 @media (max-width: 768px) {
-  /* Ensure text is always visible on mobile regardless of gradient support */
-  .text-reveal {
-    background: none;
-    -webkit-text-fill-color: white;
-    color: white;
-  }
-  section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-}
-
-@media (max-width: 768px) {
   .text-reveal {
     background: none !important;
     -webkit-text-fill-color: white !important;
     color: white !important;
   }
+  section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
 }
