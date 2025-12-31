@@ -25,7 +25,7 @@ export default function Navbar() {
     if (pathname !== "/") navigate(`/#${id}`);
     else {
       const el = document.getElementById(id);
-      if (el) window.scrollTo({ top: el.offsetTop - 90, behavior: "smooth" });
+      if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
     }
   };
 
@@ -44,7 +44,7 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex gap-10 text-xs uppercase tracking-wider">
-            {["about", "whatwedo", "partners"].map(id => (
+            {["about", "whatwedo", "collab"].map(id => (
               <a key={id} href={`#${id}`} onClick={(e)=>handleNavClick(e,id)}
                  className="text-white/70 hover:text-primary transition">
                 {id === "whatwedo" ? "What We Do" : id}
