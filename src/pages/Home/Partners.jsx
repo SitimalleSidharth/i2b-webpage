@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const slides = [
   { title: "Early-Stage Founders", text: "Builders with strong product intuition and long-term thinking.", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&q=80" },
@@ -8,52 +8,118 @@ const slides = [
   { title: "Long-Term Builders", text: "Founders seeking deep strategic partnerships — not just capital.", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&q=80" }
 ];
 
-export default function Partners() {
-  const sectionRef = useRef(null);
-  const carouselRef = useRef(null);
-  const [constraints, setConstraints] = useState({ left: 0, right: 0 });
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset, velocity) => Math.abs(offset) * velocity;
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      const scrollWidth = carouselRef.current.scrollWidth;
-      const offsetWidth = carouselRef.current.offsetWidth;
-      setConstraints({ left: -(scrollWidth - offsetWidth + 40), right: 0 });
-    }
+export default function Partners() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const timerRef = useRef(null);
+
+  const startTimer = useCallback(() => {
+    stopTimer();
+    timerRef.current = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
+    }, 4000);
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const xTitle = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const stopTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  }, []);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+    startTimer();
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    startTimer();
+  };
+
+  useEffect(() => {
+    startTimer();
+    return () => stopTimer();
+  }, [startTimer, stopTimer]);
+
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "20%" : "-20%",
+      opacity: 0
+    }),
+    center: { x: 0, opacity: 1, zIndex: 1 },
+    exit: (direction) => ({
+      x: direction < 0 ? "20%" : "-20%",
+      opacity: 0,
+      zIndex: 0
+    })
+  };
 
   return (
-    <section id="partners" ref={sectionRef} className="py-24 md:py-32 bg-bg overflow-hidden relative">
-      <motion.div style={{ x: xTitle }} className="absolute top-10 left-0 text-[12vw] font-bold text-white/[0.02] whitespace-nowrap pointer-events-none uppercase">
-        Strategic Partners Strategic Partners
-      </motion.div>
-
-      <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10">
-        <h2 className="font-heading text-4xl md:text-5xl font-bold text-reveal">Who We Partner With</h2>
+    <section id="partners" className="py-24 md:py-32 bg-bg overflow-hidden min-h-screen flex flex-col justify-center">
+      <div className="max-w-7xl mx-auto px-6 mb-10">
+        <h2 className="font-heading text-4xl md:text-5xl font-bold text-white">Who We Partner With</h2>
         <p className="text-muted mt-4">We look for builders who think in decades, not quarters.</p>
       </div>
 
-      <div className="px-6">
-        <motion.div
-          ref={carouselRef}
-          className="flex gap-6 md:gap-8 cursor-grab active:cursor-grabbing"
-          drag="x"
-          dragConstraints={constraints}
-          dragElastic={0.1}
-        >
-          {slides.map((s, i) => (
-            <motion.div key={i} className="relative min-w-[300px] md:min-w-[450px] h-[500px] md:h-[550px] rounded-[2.5rem] overflow-hidden glass-card group bg-panel flex-shrink-0">
-              <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" />
-              <div className="absolute bottom-0 p-8 md:p-10">
-                <h3 className="font-heading text-xl md:text-2xl font-bold mb-3 text-white">{s.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{s.text}</p>
+      <div className="max-w-7xl mx-auto px-6 w-full">
+        <div className="relative h-[380px] sm:h-[420px] md:h-[65vh] mb-10">
+          <AnimatePresence initial={false} custom={direction} mode="popLayout">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
+                if (swipe < -swipeConfidenceThreshold) handleNext();
+                else if (swipe > swipeConfidenceThreshold) handlePrev();
+              }}
+              transition={{
+                x: { type: "spring", stiffness: 260, damping: 25 },
+                opacity: { duration: 0.3 }
+              }}
+              className="absolute inset-0"
+            >
+              <div className="relative w-full h-full rounded-[2rem] md:rounded-[3.5rem] overflow-hidden glass-card bg-panel group">
+                <img
+                  src={slides[currentIndex].img}
+                  alt={slides[currentIndex].title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent" />
+                <div className="absolute bottom-0 p-6 sm:p-10 md:p-20">
+                  <h3 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-6 text-white">
+                    {slides[currentIndex].title}
+                  </h3>
+                  <p className="text-muted text-sm sm:text-base md:text-xl max-w-xl md:max-w-3xl leading-relaxed">
+                    {slides[currentIndex].text}
+                  </p>
+                </div>
               </div>
             </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex justify-center items-center gap-3">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === currentIndex ? "w-16 bg-primary" : "w-3 bg-white/10 hover:bg-white/30"
+              }`}
+            />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

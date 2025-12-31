@@ -18,8 +18,9 @@ export default function Founder() {
             <p className="text-white">
               <span className="text-primary font-bold">Deepak Gullapalli</span> is a visionary entrepreneur, recognized for building scalable digital platforms and founding A23, India’s leading online gaming ecosystem.
             </p>
+            <p className="text-muted">Best known as the <span className="font-bold text-white">Founder and former CEO of Head Digital Works (A23)</span>, he has built platforms that combine product depth, trust, and scale—often in complex, highly regulated environments.</p>
             <p className="text-muted">
-              He leads I2B as a venture studio focused on building next-generation consumer and B2B technology companies through AI-driven systems.
+              Today, Deepak is focused on shaping the next generation of AI-led consumer and enterprise technology through his venture studio i2b.in, while actively investing in and mentoring early-stage founders with strong product conviction
             </p>
           </div>
         </motion.div>
@@ -30,7 +31,7 @@ export default function Founder() {
             <img src={FounderImage} alt="Founder" className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700" />
           </motion.div>
           <motion.div style={{ y: noteY }} className="absolute -bottom-6 -left-0 md:-left-10 glass-card p-6 md:p-8 rounded-3xl border-l-4 border-primary max-w-xs shadow-2xl">
-            <p className="italic font-medium text-sm md:text-base">“At I2B, we partner with ambitious builders to create products that solve real, structural problems.”</p>
+            <p className="italic font-medium text-sm md:text-base">“Having spent more than two decades building and scaling a consumer internet business, I believe the next wave of opportunity lies in combining AI with deep product thinking and operational clarity. Through i2b.in, my goal is to build and support companies that are not only innovative, but also responsible, resilient, and enduring.”</p>
           </motion.div>
         </div>
       </div>

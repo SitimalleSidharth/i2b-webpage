@@ -41,8 +41,10 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-heading font-bold text-white mb-6 uppercase tracking-widest text-[10px]">Office</h4>
-              <p className="text-muted text-sm leading-relaxed">Innovation Hub, Financial District,<br />Hyderabad, India</p>
-            </div>
+                          <p className="text-muted text-sm leading-relaxed">Mahaveer Gateway <br/>
+                              Unit No.03,14th Floor, Bull Circle, Madhava Reddy Colony <br/>
+                              Nanakramguda, Gachibowli, Hyderabad, Telangana 500032</p>
+                      </div>
           </div>
         </div>
         <div className="pt-10 border-t border-white/5 text-center md:text-left">

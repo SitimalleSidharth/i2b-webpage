@@ -6,6 +6,7 @@ import Partners from "./Partners";
 import WhyUs from "./WhyUs";
 import Vision from "./Vision";
 import Contact from "../../components/Contact";
+import Philosophy from "./Philosophy";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <WhatWeDo />
       <Partners />
       <WhyUs />
+      <Philosophy/>
       <Vision />
       <Contact />
     </main>
