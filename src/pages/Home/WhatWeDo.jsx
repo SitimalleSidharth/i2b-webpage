@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
+import ai_led_consumer from "../../assets/ai_led_consumer.jpg";
 
 const items = [
   { 
-    title: "AI-led Consumer Products", 
-    desc: "We build intelligent, user-first consumer applications that leverage AI to simplify everyday tasks, personalise experiences, and deliver measurable value.", 
-    img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&q=80" 
+    title: "AI-Led Consumer Products", 
+    desc: "We build intelligent, smart consumer applications that leverage AI to simplify everyday tasks, personalise experiences, and deliver measurable value.", 
+    img: ai_led_consumer,
   },
   { 
-    title: "B2B SaaS Platforms", 
-    desc: "We design and develop B2B platforms that address real operational inefficiencies, with a focus on supply chain visibility and optimization.", 
+    title: "Scalable B2B SaaS Solutions for Modern Enterprise", 
+    desc: "We design and develop B2B SaaS platforms that eliminate operational friction. Our focus is on transforming fragmented workflows into streamlined, high-performance digital ecosystems.", 
     img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&q=80" 
   },
   { 
     title: "Startup Incubation & Investment", 
-    desc: "I2B actively invests in early-stage technology startups and works closely with founders during formative stages of product development.", 
+    desc: "I2B invests in early-stage startups and provides strategic support. We work closely with founders to turn new ideas into market-leading products.", 
     img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&q=80" 
   }
 ];

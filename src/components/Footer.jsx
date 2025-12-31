@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Twitter, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import i2b_logo from "../assets/i2b_logo2.png";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="font-heading text-2xl font-bold tracking-tighter text-white mb-6 block">
-              I2B<span className="text-primary">.</span>
+              {/* I2B<span className="text-primary">.</span> */}
+             <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" />
+              
             </Link>
             <p className="text-muted text-[14px] md:text-sm leading-relaxed mb-8 max-w-sm">
               Engineering the next generation of AI-first intelligent businesses.

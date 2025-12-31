@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import i2b_logo from "../assets/i2b_logo2.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -105,11 +106,10 @@ const handleNavClick = (e, id) => {
           <header className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-500 ${scrolled || isOpen ? "bg-black/95 backdrop-blur-xl border-b border-white/10" : "bg-transparent"}`}>
               <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:px-12">
                   <Link to="/" onClick={(e) => {
-                      e.preventDefault();
-                      setIsOpen(false);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      handleNavClick(e,"")
                   }} className="text-2xl font-bold text-white">
-                      I2B<span className="text-primary">.</span>
+                      {/* I2B<span className="text-primary">.</span> */}
+                      <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" />
                   </Link>
 
                   <div className="hidden md:flex gap-10 text-xs uppercase tracking-wider">

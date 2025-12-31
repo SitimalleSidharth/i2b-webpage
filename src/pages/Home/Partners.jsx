@@ -1,11 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
+import structural_img from "../../assets/structural_problem_solving.jpg";
+import longterm_img from "../../assets/long_term_builders.jpg";
+import early_stage_img from "../../assets/early_stage_founders.jpg";
+import ai_first_teams from "../../assets/ai_first_teams.jpg";
 
 const slides = [
-  { title: "Early-Stage Founders", text: "Builders with strong product intuition and long-term thinking.", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&q=80" },
-  { title: "AI-First Teams", text: "Teams building AI-led consumer or B2B platforms.", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&q=80" },
-  { title: "Structural Problem Solvers", text: "Entrepreneurs solving non-trivial, real-world problems.", img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&q=80" },
-  { title: "Long-Term Builders", text: "Founders seeking deep strategic partnerships — not just capital.", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&q=80" }
+  { title: "Early-Stage Founders", text: "Builders with strong product intuition and long-term thinking.", img: early_stage_img },
+  { title: "AI-First Teams", text: "Teams building AI-led consumer or B2B platforms.", img: ai_first_teams },
+  { title: "Structural Problem Solvers", text: "Entrepreneurs solving non-trivial, real-world problems.", img: structural_img },
+  { title: "Long-Term Builders", text: "Founders seeking deep strategic partnerships — not just capital.", img: longterm_img }
 ];
 
 const swipeConfidenceThreshold = 10000;
@@ -21,7 +25,7 @@ export default function Partners() {
     timerRef.current = setInterval(() => {
       setDirection(1);
       setCurrentIndex(prev => (prev + 1) % slides.length);
-    }, 4000);
+    }, 10000000000000);
   }, []);
 
   const stopTimer = useCallback(() => {
