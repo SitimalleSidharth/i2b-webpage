@@ -25,7 +25,7 @@ export default function Partners() {
     timerRef.current = setInterval(() => {
       setDirection(1);
       setCurrentIndex(prev => (prev + 1) % slides.length);
-    }, 4000);
+    }, 3000);
   }, []);
 
   const stopTimer = useCallback(() => {

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import ai_led_consumer from "../../assets/ai_led_consumer.jpg";
+import saas_solutions from "../../assets/saas-concept-collage.jpg";
+import creative_team from "../../assets/creative_team.jpg";
 
 const items = [
   { 
@@ -10,12 +12,12 @@ const items = [
   { 
     title: "Scalable B2B SaaS Solutions for Modern Enterprise", 
     desc: "We design and develop B2B SaaS platforms that eliminate operational friction. Our focus is on transforming fragmented workflows into streamlined, high-performance digital ecosystems.", 
-    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&q=80" 
+    img: saas_solutions, 
   },
   { 
     title: "Startup Incubation & Investment", 
     desc: "I2B invests in idea-stage startups and provides strategic support. We work closely with founders to turn new ideas into market-leading products.", 
-    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&q=80" 
+    img: creative_team
   }
 ];
 
@@ -57,7 +59,7 @@ export default function WhatWeDo() {
   {items.map((item,i)=>(
     <motion.div
       key={i}
-      initial={{ opacity: 0, y: 100+ i * 40 }}
+      initial={{ opacity: 0, y: 100+ i * 5 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -10 }}
       whileTap={{ scale: 0.97 }}
