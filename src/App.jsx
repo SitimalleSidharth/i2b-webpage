@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CareersTwo from "./pages/Careers/Careers2.jsx";
 
 // Lazy Load for Performance
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
@@ -34,7 +35,9 @@ export default function App() {
       <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary">I2B_LOADING...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/careers" element={<Careers />} />
+          {/* <Route path="/careers" element={<Careers />} /> */}
+                    <Route path="/careers" element={<CareersTwo />} />
+
         </Routes>
       </Suspense>
 

@@ -107,9 +107,9 @@ const handleNavClick = (e, id) => {
               <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:px-12">
                   <Link to="/" onClick={(e) => {
                       handleNavClick(e,"")
-                  }} className="text-2xl font-bold text-white">
-                      {/* I2B<span className="text-primary">.</span> */}
-                      <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" />
+                  }} className="text-4xl font-bold text-white">
+                      i2b<span className="text-primary">.</span>
+                      {/* <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" /> */}
                   </Link>
 
                   <div className="hidden md:flex gap-10 text-xs uppercase tracking-wider">

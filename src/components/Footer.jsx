@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Twitter, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import { Twitter, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import i2b_logo from "../assets/i2b_logo2.png";
 
 export default function Footer() {
@@ -7,7 +7,9 @@ export default function Footer() {
   const footerLinks = {
     Company: [{ name: "About Us", href: "/#about" }, { name: "What We Do", href: "/#whatwedo" }, { name: "Careers", href: "/careers" }],
     Legal: [{ name: "Privacy Policy", href: "#" }, { name: "Terms of Service", href: "#" }],
-    Social: [{ icon: <Linkedin size={18} />, href: "#" }, { icon: <Twitter size={18} />, href: "#" }, { icon: <Github size={18} />, href: "#" }]
+    Social: [{ icon: <Linkedin size={18} />, href: "#" }, 
+        // { icon: <Twitter size={18} />, href: "#" },
+         { icon: <Mail size={18} />, href: "mailto:contact@i2b.in" }]
   };
 
   return (
@@ -19,8 +21,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="font-heading text-2xl font-bold tracking-tighter text-white mb-6 block">
-              {/* I2B<span className="text-primary">.</span> */}
-             <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" />
+                                    i2b<span className="text-primary">.</span>
+
+             {/* <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" /> */}
               
             </Link>
             <p className="text-muted text-[14px] md:text-sm leading-relaxed mb-8 max-w-sm">
@@ -55,7 +58,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="font-heading font-bold text-white mb-5 uppercase tracking-widest text-[10px]">Legal</h4>
               <ul className="space-y-4">
                 {footerLinks.Legal.map(l => (
@@ -66,7 +69,7 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             <div>
               <h4 className="font-heading font-bold text-white mb-5 uppercase tracking-widest text-[10px]">Office</h4>

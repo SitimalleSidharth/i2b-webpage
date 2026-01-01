@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
 import structural_img from "../../assets/structural_problem_solving.jpg";
 import longterm_img from "../../assets/long_term_builders.jpg";
-import early_stage_img from "../../assets/early_stage_founders.jpg";
+import early_stage_img from "../../assets/team_discussion.jpg";
 import ai_first_teams from "../../assets/ai_first_teams.jpg";
 
 const slides = [
@@ -25,7 +25,7 @@ export default function Partners() {
     timerRef.current = setInterval(() => {
       setDirection(1);
       setCurrentIndex(prev => (prev + 1) % slides.length);
-    }, 10000000000000);
+    }, 4000);
   }, []);
 
   const stopTimer = useCallback(() => {

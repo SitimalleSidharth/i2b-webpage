@@ -12,7 +12,7 @@ export default function AboutUs() {
           transition={{ duration: 0.8 }}
           className="font-heading text-4xl md:text-6xl font-bold mb-8 text-reveal"
         >
-          About I2B
+          About <span className=" font-heading text-4xl md:text-6xl font-bold text-white">i2b<span className="text-primary">.</span></span>
         </motion.h2>
 
         <div className="h-1 w-20 bg-primary rounded-full mb-12" />

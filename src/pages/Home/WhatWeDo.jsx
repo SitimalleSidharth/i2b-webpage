@@ -14,7 +14,7 @@ const items = [
   },
   { 
     title: "Startup Incubation & Investment", 
-    desc: "I2B invests in early-stage startups and provides strategic support. We work closely with founders to turn new ideas into market-leading products.", 
+    desc: "I2B invests in idea-stage startups and provides strategic support. We work closely with founders to turn new ideas into market-leading products.", 
     img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&q=80" 
   }
 ];
@@ -57,6 +57,8 @@ export default function WhatWeDo() {
   {items.map((item,i)=>(
     <motion.div
       key={i}
+      initial={{ opacity: 0, y: 100+ i * 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -10 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 160, damping: 18 }}

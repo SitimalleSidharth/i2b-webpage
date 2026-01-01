@@ -8,6 +8,7 @@ import Vision from "./Vision";
 import Contact from "../../components/Contact";
 import Philosophy from "./Philosophy";
 import Portfolio from "./Portfolio";
+import ContactUs from "../../components/Contact2";
 
 export default function Home() {
   return (
@@ -21,7 +22,8 @@ export default function Home() {
       <Philosophy/>
       <Portfolio/>
       <Vision />
-      <Contact />
+      {/* <Contact /> */}
+      <ContactUs/>
     </main>
   );
 }

@@ -51,7 +51,10 @@ export default function Founder() {
               loading="lazy"
               src={FounderImage}
               alt="Founder"
-              className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover object-top 
+              
+              transition-all duration-700"
+              // grayscale hover:grayscale-0 
             />
           </motion.div>
 

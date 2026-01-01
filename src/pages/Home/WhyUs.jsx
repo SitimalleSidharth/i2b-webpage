@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import whyChooseImage from "../../assets/ai_strategy_board.jpg";
+
 
 const points = [
   { title: "Strategic Partnerships", desc: "Relationships aligned with outcomes, not just delivery." },
@@ -16,6 +18,7 @@ export default function WhyUs() {
             <img
               loading="lazy"
               src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&q=80"
+              // src={whyChooseImage}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
