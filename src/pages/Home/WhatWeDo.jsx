@@ -59,11 +59,12 @@ export default function WhatWeDo() {
   {items.map((item,i)=>(
     <motion.div
       key={i}
-      initial={{ opacity: 0, y: 100+ i * 5 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      // initial={{ opacity: 0, y: 100+ i * 5 }}
+      // whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -10 }}
+      // viewport={{once:true}}
       whileTap={{ scale: 0.97 }}
-      transition={{ type: "spring", stiffness: 160, damping: 18 }}
+      // transition={{ type: "spring", stiffness: 160, damping: 18 }}
       className="rounded-[2rem] overflow-hidden bg-[#0f0f0f] border border-white/10"
     >
       <div className="overflow-hidden">

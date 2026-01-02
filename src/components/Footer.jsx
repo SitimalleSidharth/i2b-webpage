@@ -7,7 +7,8 @@ export default function Footer() {
   const footerLinks = {
     Company: [{ name: "About Us", href: "/#about" }, { name: "What We Do", href: "/#whatwedo" }, { name: "Careers", href: "/careers" }],
     Legal: [{ name: "Privacy Policy", href: "#" }, { name: "Terms of Service", href: "#" }],
-    Social: [{ icon: <Linkedin size={18} />, href: "#" }, 
+    Social: [
+      // { icon: <Linkedin size={18} />, href: "#" }, 
         // { icon: <Twitter size={18} />, href: "#" },
          { icon: <Mail size={18} />, href: "mailto:contact@i2b.in" }]
   };
