@@ -18,12 +18,13 @@ export default function Portfolio() {
           initial={{ opacity: 0.7 }}
           animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          className="glass-card bg-white/[0.04] border border-white/10 rounded-[1.8rem] md:rounded-[2.5rem] px-12 py-10 md:px-20 md:py-14 inline-block"
+          // OPTIMIZATION: Critical for infinite animations
+          className="glass-card bg-white/[0.04] border border-white/10 rounded-[1.8rem] md:rounded-[2.5rem] px-12 py-10 md:px-20 md:py-14 inline-block will-change-transform"
         >
           <motion.p
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-            className="font-mono uppercase tracking-widest text-primary text-lg md:text-2xl"
+            className="font-mono uppercase tracking-widest text-primary text-lg md:text-2xl will-change-transform"
           >
             Coming Soon
           </motion.p>

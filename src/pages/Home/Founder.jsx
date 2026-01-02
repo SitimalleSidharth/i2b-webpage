@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import FounderImage from '../../assets/Deepak_Gullapali.jpg';
+import FounderImage from '../../assets/Deepak_Gullapali.webp';
 
 export default function Founder() {
   const containerRef = useRef(null);
@@ -46,38 +46,27 @@ export default function Founder() {
 
           <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-primary/20 to-accent/20 blur-2xl opacity-50" />
 
-          <motion.div style={{ y: imgY }} className="relative rounded-[2.5rem] overflow-hidden border border-white/10 aspect-[5/6] bg-panel will-change-transform">
+          {/* OPTIMIZATION: will-change-transform added */}
+          <motion.div 
+            style={{ y: imgY }} 
+            className="relative rounded-[2.5rem] overflow-hidden border border-white/10 aspect-[5/6] bg-panel will-change-transform"
+          >
             <img
               loading="lazy"
               src={FounderImage}
-              alt="Founder"
-              className="w-full h-full object-cover object-top 
-              
-              transition-all duration-700"
-              // grayscale hover:grayscale-0 
+              alt="Portrait of Deepak Gullapalli, Founder of I2B"
+              width="500" // Adjust based on actual image ratio
+              height="600"
+              className="w-full h-full object-cover object-top transition-all duration-700"
             />
           </motion.div>
 
           <motion.div
             style={{ y: noteY }}
-            className="
-    md:absolute
-    static
-    mt-8
-    md:-bottom-12
-    md:-left-10
-    glass-card
-    p-5 md:p-8
-    rounded-3xl
-    border-l-4 border-primary
-    max-w-sm
-    shadow-2xl
-    will-change-transform
-  "
+            className="md:absolute static mt-8 md:-bottom-12 md:-left-10 glass-card p-5 md:p-8 rounded-3xl border-l-4 border-primary max-w-sm shadow-2xl will-change-transform"
           >
-
             <p className="italic font-medium text-[13px] md:text-base leading-relaxed">
-              “Having spent more than two decades building and scaling a consumer internet business, I believe the next wave of opportunity lies in combining AI with deep product thinking and operational clarity. Through i2b.in, my goal is to build and support companies that are not only innovative, but also responsible, resilient, and enduring.”
+              “Having spent more than two decades building and scaling a consumer internet business, I believe the next wave of opportunity lies in combining AI with deep product thinking and operational clarity...”
             </p>
           </motion.div>
 

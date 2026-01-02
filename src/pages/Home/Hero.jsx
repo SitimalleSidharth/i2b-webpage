@@ -12,7 +12,7 @@ const keywords = [
 function FloatingTile({ text, x, y, delay }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0, x: 0, y: 0 }}
       animate={{
         opacity: [0.4, 0.55, 0.4],
         x: [0, 12, -12, 0],
@@ -24,7 +24,8 @@ function FloatingTile({ text, x, y, delay }) {
         delay,
         ease: "easeInOut"
       }}
-      className="absolute max-w-[90vw] truncate px-3 py-1 rounded-full border border-white/5 bg-white/5 text-[8px] md:text-[10px] font-mono text-primary/40 tracking-widest whitespace-nowrap pointer-events-none"
+      // OPTIMIZATION: will-change-transform forces GPU promotion
+      className="absolute max-w-[90vw] truncate px-3 py-1 rounded-full border border-white/5 bg-white/5 text-[8px] md:text-[10px] font-mono text-primary/40Vk tracking-widest whitespace-nowrap pointer-events-none will-change-transform"
       style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
     >
       {text}
@@ -39,6 +40,7 @@ export default function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  // OPTIMIZATION: CSS media query check is often safer/faster than JS window check for initial render
   const isDesktop = typeof window !== "undefined" && window.innerWidth > 768;
 
   const gridTiles = useMemo(() => {
@@ -54,11 +56,9 @@ export default function Hero() {
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg">
 
       {/* Floating tiles only on desktop */}
-      {isDesktop && (
-        <div className="absolute inset-0 z-0 hidden md:block overflow-hidden">
-          {gridTiles.map((tile, i) => <FloatingTile key={i} {...tile} />)}
-        </div>
-      )}
+      <div className="absolute inset-0 z-0 hidden md:block overflow-hidden">
+         {gridTiles.map((tile, i) => <FloatingTile key={i} {...tile} />)}
+      </div>
 
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(106,227,255,0.12),transparent_65%)]" />
 

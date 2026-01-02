@@ -23,6 +23,7 @@ export default function Vision() {
           <a
             href="#contact"
             className="btn-primary inline-block text-base md:text-lg px-10 md:px-12 py-4 md:py-5"
+            aria-label="Contact us to create your vision"
           >
             Let’s Create It
           </a>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import i2b_logo from "../assets/i2b_logo2.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,60 +18,9 @@ export default function Navbar() {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
 
-//   const handleNavClick = (e, id) => {
-//     e.preventDefault();
-//     setIsOpen(false);
-
-//     // const nav = document.querySelector("header");
-//     // const offset = nav ? nav.offsetHeight + 10 : 100;
-//     const offset = 0;
-
-
-//     if (pathname !== "/") navigate(`/#${id}`);
-//     else {
-    //   const el = document.getElementById(id);
-    //   if (el) {
-    //     const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    //     window.scrollTo({ top: y, behavior: "smooth" });
-    //   }
-//     }
-//   };
-
-// const handleNavClick = (e, id) => {
-//   e.preventDefault();
-//   setIsOpen(false);
-
-//   // If not already on home, go there first, then scroll
-//   if (pathname !== "/") {
-//     navigate("/");
-//     setTimeout(() => {
-//       const el = document.getElementById(id);
-//       if (el) {
-//         const y = el.getBoundingClientRect().top + window.pageYOffset-0;
-//         window.scrollTo({ top: y, behavior: "smooth" });
-//       }
-//     }, 100);
-//     return;
-//   }
-
-//  const el = document.getElementById(id);
-//       if (el) {
-//         const y = el.getBoundingClientRect().top + window.pageYOffset-0;
-//         window.scrollTo({ top: y, behavior: "smooth" });
-//       }
-// };   
-    //     setIsOpen(false);
-
-    //     const el = document.getElementById(id);
-    //     if (!el) return;
-    //     const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    //     window.scrollTo({ top: y, behavior: "smooth" });
-
-    // };
-
-const handleNavClick = (e, id) => {
-  e.preventDefault();
-  setIsOpen(false);
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    setIsOpen(false);
 
     const scrollToSection = () => {
         const el = document.getElementById(id);
@@ -82,16 +30,15 @@ const handleNavClick = (e, id) => {
         }
     };
 
-  if (pathname !== "/") {
-    navigate("/");
-    requestAnimationFrame(() => {
-      // wait for route to mount
-      setTimeout(scrollToSection, 60);
-    });
-  } else {
-    scrollToSection();
-  }
-};
+    if (pathname !== "/") {
+      navigate("/");
+      requestAnimationFrame(() => {
+        setTimeout(scrollToSection, 60);
+      });
+    } else {
+      scrollToSection();
+    }
+  };
 
   const navItems = [
     { id: "about", label: "About" },
@@ -103,34 +50,40 @@ const handleNavClick = (e, id) => {
 
   return (
     <>
-          <header className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-500 ${scrolled || isOpen ? "bg-black/95 backdrop-blur-xl border-b border-white/10" : "bg-transparent"}`}>
-              <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:px-12">
-                  <Link to="/" onClick={(e) => {
-                      handleNavClick(e,"")
-                  }} className="text-4xl font-bold text-white">
-                      i2b<span className="text-primary">.</span>
-                      {/* <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" /> */}
-                  </Link>
-
-                  <div className="hidden md:flex gap-10 text-xs uppercase tracking-wider">
-            {navItems.map(item => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e)=>handleNavClick(e,item.id)}
-                className="text-white/70 hover:text-primary transition"
+      <header className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-500 ${scrolled || isOpen ? "bg-black/95 backdrop-blur-xl border-b border-white/10" : "bg-transparent"}`}>
+          <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:px-12">
+              <Link 
+                to="/" 
+                aria-label="I2B Home"
+                onClick={(e) => handleNavClick(e,"")} 
+                className="text-4xl font-bold text-white"
               >
-                {item.label}
-              </a>
-            ))}
-            <Link to="/careers" className="text-white/70 hover:text-primary">
-              Careers
-            </Link>
-          </div>
+                  i2b<span className="text-primary">.</span>
+              </Link>
 
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white p-2 -mr-2">
-            {isOpen ? <X size={28}/> : <Menu size={28}/>}
-          </button>
+              <div className="hidden md:flex gap-10 text-xs uppercase tracking-wider">
+                {navItems.map(item => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e)=>handleNavClick(e,item.id)}
+                    className="text-white/70 hover:text-primary transition"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <Link to="/careers" className="text-white/70 hover:text-primary">
+                  Careers
+                </Link>
+              </div>
+
+              <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className="md:hidden text-white p-2 -mr-2"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+              >
+                {isOpen ? <X size={28}/> : <Menu size={28}/>}
+              </button>
         </nav>
       </header>
 

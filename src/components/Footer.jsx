@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { Twitter, Linkedin, Mail, ArrowUpRight } from "lucide-react";
-import i2b_logo from "../assets/i2b_logo2.png";
+import { Mail, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,9 +7,7 @@ export default function Footer() {
     Company: [{ name: "About Us", href: "/#about" }, { name: "What We Do", href: "/#whatwedo" }, { name: "Careers", href: "/careers" }],
     Legal: [{ name: "Privacy Policy", href: "#" }, { name: "Terms of Service", href: "#" }],
     Social: [
-      // { icon: <Linkedin size={18} />, href: "#" }, 
-        // { icon: <Twitter size={18} />, href: "#" },
-         { icon: <Mail size={18} />, href: "mailto:contact@i2b.in" }]
+         { icon: <Mail size={18} />, href: "mailto:contact@i2b.in", label: "Email Contact" }]
   };
 
   return (
@@ -21,11 +18,8 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link to="/" className="font-heading text-2xl font-bold tracking-tighter text-white mb-6 block">
-                                    i2b<span className="text-primary">.</span>
-
-             {/* <img src={i2b_logo} alt="I2B Logo" className="h-6 w-auto" /> */}
-              
+            <Link to="/" aria-label="Back to top" className="font-heading text-2xl font-bold tracking-tighter text-white mb-6 block">
+                i2b<span className="text-primary">.</span>
             </Link>
             <p className="text-muted text-[14px] md:text-sm leading-relaxed mb-8 max-w-sm">
               Engineering the next generation of AI-first intelligent businesses.
@@ -35,6 +29,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href={s.href}
+                  aria-label={s.label}
                   className="w-11 h-11 md:w-10 md:h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-muted hover:text-primary hover:border-primary transition-all"
                 >
                   {s.icon}
@@ -58,19 +53,6 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-
-            {/* <div>
-              <h4 className="font-heading font-bold text-white mb-5 uppercase tracking-widest text-[10px]">Legal</h4>
-              <ul className="space-y-4">
-                {footerLinks.Legal.map(l => (
-                  <li key={l.name}>
-                    <a href={l.href} className="text-muted hover:text-white text-[14px] md:text-sm transition-colors">
-                      {l.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div> */}
 
             <div>
               <h4 className="font-heading font-bold text-white mb-5 uppercase tracking-widest text-[10px]">Office</h4>

@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
-import structural_img from "../../assets/structural_problem_solving.jpg";
-import longterm_img from "../../assets/long_term_builders.jpg";
-import early_stage_img from "../../assets/team_discussion.jpg";
-import ai_first_teams from "../../assets/ai_first_teams.jpg";
+import structural_img from "../../assets/structural_problem_solving.webp";
+import longterm_img from "../../assets/long_term_builders.webp";
+import early_stage_img from "../../assets/team_discussion.webp";
+import ai_first_teams from "../../assets/ai_first_teams.webp";
 
 const slides = [
   { title: "Early-Stage Founders", text: "Builders with strong product intuition and long-term thinking.", img: early_stage_img },
@@ -53,7 +53,8 @@ export default function Partners() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="relative h-[320px] sm:h-[360px] md:h-[65vh] mb-10">
+        {/* Explicit Height Container to prevent CLS */}
+        <div className="relative h-[320px] sm:h-[360px] md:h-[65vh] mb-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0f0f0f]">
           <AnimatePresence initial={false} custom={direction} mode="popLayout">
             <motion.div
               key={currentIndex}
@@ -77,7 +78,7 @@ export default function Partners() {
               transition={{ x: { type: "spring", stiffness: 260, damping: 25 }, opacity: { duration: 0.3 } }}
               className="absolute inset-0 will-change-transform"
             >
-              <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-[#0f0f0f] border border-white/10">
+              <div className="relative w-full h-full">
                 <img
                   loading="lazy"
                   src={slides[currentIndex].img}
@@ -100,7 +101,12 @@ export default function Partners() {
 
         <div className="flex justify-center items-center gap-3">
           {slides.map((_, i) => (
-            <button key={i} onClick={() => paginate(i - currentIndex)} className={`h-1.5 rounded-full transition-all duration-500 ${i === currentIndex ? "w-16 bg-primary" : "w-3 bg-white/10 hover:bg-white/30"}`} />
+            <button 
+                key={i} 
+                onClick={() => paginate(i - currentIndex)} 
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-500 ${i === currentIndex ? "w-16 bg-primary" : "w-3 bg-white/10 hover:bg-white/30"}`} 
+            />
           ))}
         </div>
       </div>
