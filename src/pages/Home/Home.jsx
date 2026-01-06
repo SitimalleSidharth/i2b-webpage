@@ -5,7 +5,6 @@ import WhatWeDo from "./WhatWeDo";
 import Partners from "./Partners";
 import WhyUs from "./WhyUs";
 import Vision from "./Vision";
-import Contact from "../../components/Contact";
 import Philosophy from "./Philosophy";
 import Portfolio from "./Portfolio";
 import ContactUs from "../../components/Contact2";
@@ -17,12 +16,12 @@ export default function Home() {
       <Founder />
       <AboutUs />
       <WhatWeDo />
-      <Partners />
+      {/* Moved WhyUs before Partners for better storytelling flow */}
       <WhyUs />
+      <Partners />
       <Philosophy/>
       <Portfolio/>
       <Vision />
-      {/* <Contact /> */}
       <ContactUs/>
     </main>
   );

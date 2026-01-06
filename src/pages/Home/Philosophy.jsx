@@ -2,28 +2,39 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section className="relative py-24 md:py-36 bg-bg overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="max-w-5xl mx-auto px-6 text-center"
-      >
-        <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8 text-white">
-          Our Philosophy
-        </h2>
+    <section className="relative py-32 md:py-48 bg-bg overflow-hidden flex items-center justify-center">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_70%)]" />
 
-        <p className="text-muted text-lg md:text-2xl leading-relaxed tracking-wide">
-          We believe meaningful companies are built through disciplined execution,
-          sound unit economics, and an obsessive focus on users.
-          <br /><br />
-          I2B partners with founders who are willing to build patiently,
-          think structurally, and aim for category leadership rather than quick exits.
-        </p>
+      <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="block font-mono text-primary text-xs uppercase tracking-[0.3em] mb-6">
+            The Manifesto
+          </span>
+          
+          <h2 className="font-heading text-3xl md:text-5xl md:leading-[1.4] font-bold text-white leading-relaxed">
+            "We believe meaningful companies are built through <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">disciplined execution</span>, 
+            sound unit economics, and an obsessive focus on users."
+          </h2>
 
-        <div className="mt-14 w-24 h-[2px] mx-auto bg-primary rounded-full" />
-      </motion.div>
+          <div className="mt-12 flex justify-center">
+            <div className="h-24 w-[1px] bg-gradient-to-b from-primary to-transparent" />
+          </div>
+
+          <p className="mt-8 text-muted text-lg max-w-2xl mx-auto">
+            At i2b, we optimize for <span className="text-white font-medium">longevity</span> over speed. 
+            We partner with founders who are willing to think structurally and aim for 
+            category leadership rather than quick exits.
+          </p>
+        </motion.div>
+
+      </div>
     </section>
   );
 }

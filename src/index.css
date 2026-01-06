@@ -40,8 +40,7 @@ html, body {
   padding: 0;
 }
 
-
-/* Reduce Motion Mode (auto enabled on mobile) */
+/* Reduce Motion Mode */
 .reduce-motion *, 
 .reduce-motion *::before, 
 .reduce-motion *::after {
@@ -49,7 +48,7 @@ html, body {
   transition: none !important;
 }
 
-/* Fix for the white-on-white heading issue */
+/* Text Reveal Gradient */
 .text-reveal {
   background: linear-gradient(to bottom, #ffffff 40%, rgba(255, 255, 255, 0.4) 100%);
   -webkit-background-clip: text;
@@ -68,11 +67,14 @@ html, body {
   }
 }
 
+/* IMPROVED GLASS CARD */
 .glass-card {
-  background: var(--color-card);
+  /* Added a subtle gradient to give depth */
+  background: linear-gradient(145deg, rgba(20, 25, 40, 0.7) 0%, rgba(13, 19, 32, 0.4) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   will-change: transform;
 }
 

@@ -5,9 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CareersTwo from "./pages/Careers/Careers2.jsx";
 
-// Lazy Load for Performance
+// Lazy Load Home only
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
-const Careers = lazy(() => import("./pages/Careers/Careers.jsx"));
 
 export default function App() {
   const { pathname, hash } = useLocation();
@@ -29,12 +28,13 @@ export default function App() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="relative selection:bg-primary selection:text-black">
+        {/* Ambient Background Glows */}
         <div className="ambient-orb orb-accent w-[300px] h-[300px] md:w-[500px] md:h-[500px] top-[10%] -right-20" />
         <div className="ambient-orb orb-primary w-[400px] h-[400px] md:w-[700px] md:h-[700px] top-[60%] -left-40" />
         
         <Navbar />
         
-        <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary">I2B_LOADING...</div>}>
+        <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary text-sm tracking-widest">INITIALIZING...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/careers" element={<CareersTwo />} />
