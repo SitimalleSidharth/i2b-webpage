@@ -16,21 +16,37 @@ export default function Founder() {
 
   return (
     <section ref={containerRef} className="py-24 px-6 relative bg-bg">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+      {/* LAYOUT UPDATE:
+         - Mobile: 'flex-col' to allow reordering (Heading -> Image -> Text)
+         - Desktop: 'grid' to maintain side-by-side layout
+      */}
+      <div className="max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-12 items-center">
 
-        {/* Text Block */}
+        {/* --- 1. MOBILE ONLY HEADING (Order 1) --- */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-heading text-[2.3rem] leading-tight font-bold text-reveal md:hidden order-1 w-full text-left"
+        >
+          Meet the Founder
+        </motion.h2>
+
+        {/* --- 3. TEXT BLOCK (Order 3 on Mobile, Left on Desktop) --- */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="md:col-span-7"
+          className="md:col-span-7 order-3 md:order-none"
         >
-          <h2 className="font-heading text-[2.3rem] leading-tight md:text-6xl font-bold mb-8 text-reveal">
+          {/* DESKTOP HEADING (Hidden on Mobile) */}
+          <h2 className="font-heading text-[2.3rem] leading-tight md:text-6xl font-bold mb-8 text-reveal hidden md:block">
             Meet the Founder
           </h2>
 
-          <div className="space-y-6 text-[15px] md:text-lg leading-relaxed">
+          <div className="space-y-6 text-[15px] md:text-lg leading-relaxed text-left">
             <p className="text-white">
               <span className="text-primary font-bold">Deepak Gullapalli</span> is a visionary entrepreneur, recognized for building scalable digital platforms and founding A23, India’s leading online gaming ecosystem.
             </p>
@@ -43,8 +59,8 @@ export default function Founder() {
           </div>
         </motion.div>
 
-        {/* Image + Quote */}
-        <div className="md:col-span-5 relative group mt-16 md:mt-0">
+        {/* --- 2. IMAGE + QUOTE (Order 2 on Mobile, Right on Desktop) --- */}
+        <div className="md:col-span-5 relative group order-2 md:order-none w-full">
 
           <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-primary/20 to-accent/20 blur-2xl opacity-50" />
 
@@ -67,7 +83,7 @@ export default function Founder() {
             style={{ y: noteY }}
             className="md:absolute static mt-8 md:-bottom-12 md:-left-10 glass-card p-5 md:p-8 rounded-3xl border-l-4 border-primary max-w-sm shadow-2xl will-change-transform"
           >
-            <p className="italic font-medium text-[13px] md:text-base leading-relaxed">
+            <p className="italic font-medium text-[13px] md:text-base leading-relaxed text-left">
               “Having spent more than two decades building and scaling a consumer internet business, I believe the next wave of opportunity lies in combining AI with deep product thinking and operational clarity...”
             </p>
           </motion.div>

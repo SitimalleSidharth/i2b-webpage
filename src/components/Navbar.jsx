@@ -21,12 +21,16 @@ export default function Navbar() {
   const handleNavClick = (e, id) => {
     e.preventDefault();
     setIsOpen(false);
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     const scrollToSection = () => {
-        const el = document.getElementById(id);
-        if (el) {
-            const y = el.getBoundingClientRect().top + window.pageYOffset - 0;
-            window.scrollTo({ top: y, behavior: "smooth" });
+      if (!id) return scrollToTop();
+      const el = document.getElementById(id);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 0;
+        window.scrollTo({ top: y, behavior: "smooth" });
         }
     };
 
@@ -41,9 +45,10 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { id: "about", label: "About" },
+
     { id: "whatwedo", label: "What We Do" },
-    { id: "collab", label: "Collab" },
+    { id: "collab", label: "Collaborate" },
+    { id: "about", label: "About" },
     { id: "portfolio", label: "Portfolio" },
     { id: "contact", label: "Contact" }
   ];

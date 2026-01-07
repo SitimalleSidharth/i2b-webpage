@@ -15,9 +15,9 @@ export default function Home() {
     <main>
       <Hero />
       <Founder />
-      <AboutUs />
       <WhatWeDo />
       <Partners />
+      <AboutUs />
       <WhyUs />
       <Philosophy/>
       <Portfolio/>
