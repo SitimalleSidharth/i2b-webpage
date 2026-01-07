@@ -37,7 +37,7 @@ export default function App() {
         <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary">I2B_LOADING...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/careers" element={<CareersTwo />} />
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         </Suspense>
 

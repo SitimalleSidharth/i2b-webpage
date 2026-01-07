@@ -63,7 +63,7 @@ export default function Contact() {
             </p>
 
             <div className="space-y-8">
-              <div onClick={() => window.location.href = "mailto:contact@i2b.in"} className="flex items-center gap-6 group cursor-pointer">
+              {/* <div onClick={() => window.location.href = "mailto:contact@i2b.in"} className="flex items-center gap-6 group cursor-pointer">
                 <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary transition-colors">
                   <Mail className="text-primary" size={20} />
                 </div>
@@ -71,8 +71,13 @@ export default function Contact() {
                   <p className="text-[10px] text-muted font-mono uppercase">Email us</p>
                   <p className="text-white font-medium">contact@i2b.in</p>
                 </div>
-              </div>
-
+              </div> */}
+              <a 
+              href="https://maps.app.goo.gl/2Lguo8p7Xmi8Ermu9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 md:gap-6 opacity-80 hover:opacity-100 transition-opacity cursor-pointer group"
+            >
               <div className="flex items-center gap-6 group">
                 <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary transition-colors">
                   <MapPin className="text-primary" size={20} />
@@ -80,10 +85,13 @@ export default function Contact() {
                 <div>
                   <p className="text-[10px] text-muted font-mono uppercase">Location</p>
                   <p className="text-white font-medium">
-                    Mahaveer Gateway, Unit 03, 14th Floor — Nanakramguda, Hyderabad, Telangana, IND
+                   Mahaveer Gateway <br/>
+                Unit No.03,14th Floor, Bull Circle, Madhava Reddy Colony <br/>
+                Nanakramguda, Gachibowli, Hyderabad, Telangana 500032
                   </p>
                 </div>
               </div>
+              </a>
             </div>
           </div>
 

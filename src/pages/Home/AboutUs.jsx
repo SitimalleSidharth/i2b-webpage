@@ -28,7 +28,7 @@ export default function AboutUs() {
             className="group md:col-span-8 glass-card rounded-3xl p-8 md:p-10 flex flex-col justify-end relative overflow-hidden min-h-[320px] will-change-transform"
           >
             {/* BORDER GLOW BLEED */}
-            <div className="absolute inset-0 rounded-3xlHv border border-primary/0 group-hover:border-primary/40 transition-all duration-500 pointer-events-none" />
+            <div className="absolute inset-0 rounded-3xl border border-primary/0 group-hover:border-primary/40 transition-all duration-500 pointer-events-none" />
             <div className="absolute -inset-1 rounded-3xl bg-primary/10 blur-2xl opacity-60 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
 
             <Rocket size={300} className="absolute -top-10 -right-10 text-primary/5 pointer-events-none" aria-hidden="true" />

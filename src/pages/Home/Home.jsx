@@ -22,8 +22,8 @@ export default function Home() {
       <Philosophy/>
       <Portfolio/>
       <Vision />
-      {/* <Contact /> */}
-      <ContactUs/>
+      <Contact />
+      {/* <ContactUs/> */}
     </main>
   );
 }

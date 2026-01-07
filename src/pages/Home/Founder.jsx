@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import FounderImage from '../../assets/Deepak_Gullapali.webp';
+// import FounderImage from '../../assets/Deepak_Gullapali.webp';
+import FounderImage from '../../assets/Deepak_Gullapali2.jpg';
+
 
 export default function Founder() {
   const containerRef = useRef(null);
@@ -13,7 +15,7 @@ export default function Founder() {
   const noteY = useTransform(scrollYProgress, [0, 1], ["40px", "-40px"]);
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 px-6 relative bg-bg">
+    <section ref={containerRef} className="py-24 px-6 relative bg-bg">
       <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
 
         {/* Text Block */}
