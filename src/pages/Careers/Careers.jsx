@@ -212,46 +212,35 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
     }
     setFile(selectedFile);
   };
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  const form = e.target
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const newErrors = {};
+  const fd = new FormData()
+  fd.append("job", jobTitle)
+  fd.append("name", form.fullname.value)
+  fd.append("email", form.email.value)
+  fd.append("portfolio", form.portfolio.value)
+  fd.append("message", form.message.value)
+  fd.append("resume", file)
 
-    const fullname = form.fullname.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+  setIsSubmitting(true)
 
-    if (!fullname) newErrors.fullname = "Required";
-    if (!email.includes("@")) newErrors.email = "Invalid email";
-    if (!file) newErrors.file = "Resume required";
-    
-    // Logic: If it's a General Application, the message/bio is mandatory
-    // to understand what they are looking for.
-    if (isGeneral && !message) {
-      newErrors.message = "Please tell us a bit about yourself and the role you're eyeing.";
-    }
+  const res = await fetch("/api/careers", {
+    method: "POST",
+    body: fd
+  })
 
-    if (Object.keys(newErrors).length > 0) return setErrors(newErrors);
+  if (res.ok) {
+    alert("Application Sent Successfully")
+    onClose()
+  } else {
+    alert("Submission failed. Try again.")
+  }
 
-    setIsSubmitting(true);
-    
-    // Simulate API Payload
-    const payload = {
-        job: jobTitle,
-        name: fullname,
-        email: email,
-        portfolio: form.portfolio.value,
-        message: message,
-        file: file.name
-    };
-    console.log("Submitting:", payload);
+  setIsSubmitting(false)
+}
 
-    await new Promise(r => setTimeout(r, 2000)); 
-    alert("Application Sent! We've received your details.");
-    setIsSubmitting(false);
-    onClose();
-  };
 
   return (
     <AnimatePresence>
