@@ -26,7 +26,7 @@ export default function AboutUs() {
             whileHover={{ y: -5, scale: 1.01 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
-            className="group md:col-span-8 glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-between relative overflow-hidden min-h-[300px] md:min-h-[320px] will-change-transform"
+            className="group md:col-span-8 glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-center relative overflow-hidden min-h-[300px] md:min-h-[320px] will-change-transform"
           >
             <div className="absolute inset-0 rounded-3xl border border-primary/0 group-hover:border-primary/40 transition-all duration-500 pointer-events-none" />
             <div className="absolute -inset-1 rounded-3xl bg-primary/10 blur-2xl opacity-60 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
@@ -34,21 +34,19 @@ export default function AboutUs() {
             <Rocket size={220} className="absolute -top-8 -right-8 text-primary/5 pointer-events-none rotate-12" />
 
             <div className="relative z-10 max-w-xl">
-              <h3 className="text-primary font-mono text-[10px] uppercase tracking-widest mb-3">
+              <h3 className="text-primary font-mono text-[12px] uppercase tracking-widest mb-5">
                 Our Focus
               </h3>
-              <h4 className="text-xl md:text-2xl font-bold mb-3 text-white">
-                A Product Engineering Studio for Consumer Technology
+              <h4 className="text-xl md:text-[26px] font-bold mb-5 text-white">
+                Product Engineering Built Around Consumers
               </h4>
-              <p className="text-muted text-sm mb-4 leading-relaxed">
-                We partner closely with founders to build products that solve real problems,
-                feel effortless to use, and scale smoothly as they grow.
+              <p className="text-muted text-sm mb-3 leading-relaxed">
+                We collaborate with visionary leaders and turn ideas into scalable, reliable, and user-centric products that address real-world challenges. 
               </p>
-              <br/>
-              <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted font-medium">
-                <li><span className="text-primary">•</span> Thoughtful design</li>
-                <li><span className="text-primary">•</span> Strong engineering</li>
-                <li><span className="text-primary">•</span> Built for people</li>
+              <ul className="text-[13px] text-muted space-y-1.5">
+                <li>• Product thinking that prioritizes what matters most.</li>
+                <li>• Engineering decisions made with long-term impact in mind.</li>
+                <li>• Systems designed for people who use them every day.</li>
               </ul>
             </div>
           </motion.div>
@@ -60,17 +58,17 @@ export default function AboutUs() {
             whileHover={{ y: -5, scale: 1.01 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="group md:col-span-4 glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-between min-h-[240px] relative overflow-hidden will-change-transform"
+            className="group md:col-span-4 glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-center min-h-[240px] relative overflow-hidden will-change-transform"
           >
             <div className="absolute inset-0 rounded-3xl border border-accent/0 group-hover:border-accent/30 transition-all duration-500 pointer-events-none" />
             <div className="absolute -inset-1 rounded-3xl bg-accent/10 blur-2xl opacity-60 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
 
             <Puzzle className="text-accent mb-4" size={28} />
             <div className="relative z-10">
-              <h3 className="text-primary font-mono text-[10px] uppercase tracking-widest mb-2">
+              <h3 className="text-primary font-mono text-[12px] uppercase tracking-widest mb-8">
                 Our Approach
               </h3>
-              <h4 className="text-lg font-bold mb-3 text-white">
+              <h4 className="text-xl font-bold mb-3 text-white">
                 Co-building and scaling from zero to production-ready
               </h4>
               <ul className="text-[11px] text-muted space-y-1.5">
