@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section className="relative py-24 md:py-36 bg-bg overflow-hidden">
+    <section className="relative py-24 md:py-24 bg-bg overflow-hidden">
       {/* BACKGROUND ELEMENTS */}
       {/* 1. Subtle Dot Grid */}
       <div className="absolute inset-0 opacity-[0.15] pointer-events-none" 

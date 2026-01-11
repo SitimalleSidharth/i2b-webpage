@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 // import FounderImage from '../../assets/Deepak_Gullapali.webp';
-import FounderImage from '../../assets/Deepak_Gullapali2.jpg';
+import FounderImage from '../../assets/profile_casual.jpg';
 
 
 export default function Founder() {

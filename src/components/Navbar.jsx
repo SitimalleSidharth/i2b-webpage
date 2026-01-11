@@ -47,8 +47,8 @@ export default function Navbar() {
   const navItems = [
 
     { id: "whatwedo", label: "What We Do" },
-    { id: "collab", label: "Collaborate" },
     { id: "about", label: "About" },
+    { id: "collab", label: "Collaborate" },
     { id: "portfolio", label: "Portfolio" },
     { id: "contact", label: "Contact" }
   ];

@@ -13,19 +13,31 @@ export default function App() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [pathname, hash]);
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+}, []);
 
+ useEffect(() => {
+  // Force true top reset first (prevents Founder landing)
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+  if (!hash) return;
+
+  const id = hash.replace('#', '');
+
+  const tryScroll = () => {
+    const el = document.getElementById(id);
+    if (!el) {
+      requestAnimationFrame(tryScroll);
+      return;
+    }
+
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  tryScroll();
+}, [pathname, hash]);
   return (
     <LazyMotion features={domAnimation}>
       <div className="relative selection:bg-primary selection:text-black">

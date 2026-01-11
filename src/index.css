@@ -14,6 +14,11 @@
   --color-border: rgba(255, 255, 255, 0.08);
 }
 
+/* Hides the reCAPTCHA badge */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 #app-root {
   width: 100%;
   overflow-x: clip;
