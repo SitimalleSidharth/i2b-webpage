@@ -13,8 +13,8 @@ const slides = [
     img: early_stage_img
   },
   {
-    title: "AI-First Teams",
-    text: "Teams embedding AI into core workflows across SaaS, data platforms, and intelligent products.",
+    title: "Platform-First Teams",
+    text: "Companies & Teams building modern consumer and B2B platforms with AI embedded intelligence.",
     img: ai_first_teams
   },
   {

@@ -4,7 +4,71 @@ import { X, CheckCircle, ArrowRight, ChevronLeft, UploadCloud } from "lucide-rea
 import AnimatedSection from "../../components/AnimatedSection";
 
 // const roles = [ ... ]
-const roles = [];
+const roles = [
+  {
+    id: "ai-engineer",
+    title: "AI Engineer",
+    type: "Full-time",
+    location: "On-site",
+    category: "Engineering",
+    experience: "2+ Years",
+    description: "Shape our AI-first product from scratch. Work directly with founders to build intelligent features that define our core offering. Own ML pipelines end-to-end.",
+    responsibilities: [
+      "Design and implement end-to-end machine learning pipelines.",
+      "Collaborate with founders to integrate AI features into the core product.",
+      "Optimize LLM performance and manage deployment architectures.",
+      "Stay updated with the latest advancements in AI/ML and apply them to product development."
+    ],
+    requirements: [
+      "2+ years of experience in AI/ML development.",
+      "Strong proficiency in Python and frameworks like PyTorch or TensorFlow.",
+      "Experience with Large Language Models (LLMs) and Prompt Engineering.",
+      "Knowledge of MLOps practices and FastAPI for API development."
+    ]
+  },
+  {
+    id: "cloud-engineer",
+    title: "Cloud Engineer",
+    type: "Full-time",
+    location: "On-site",
+    category: "Infrastructure",
+    experience: "3-5 Years",
+    description: "Architect our cloud infrastructure for scale. Design systems that can handle 0 to millions of users. Own DevOps, security, and reliability from day one.",
+    responsibilities: [
+      "Architect and maintain scalable cloud infrastructure on AWS/GCP/Azure.",
+      "Implement and manage container orchestration using Kubernetes.",
+      "Automate infrastructure provisioning using Terraform.",
+      "Establish robust CI/CD pipelines and ensure system reliability and security."
+    ],
+    requirements: [
+      "3-5 years of experience in Cloud Engineering or DevOps.",
+      "Hands-on experience with AWS, GCP, or Azure.",
+      "Expertise in Kubernetes and Docker.",
+      "Proficiency in Terraform and CI/CD tools."
+    ]
+  },
+  {
+    id: "senior-java-developer",
+    title: "Senior Java Developer",
+    type: "Full-time",
+    location: "On-site",
+    category: "Engineering",
+    experience: "4-6 Years",
+    description: "Build robust backend systems that power our product. Design APIs, databases, and microservices. Make critical architecture decisions with high autonomy.",
+    responsibilities: [
+      "Develop high-performance backend systems using Java 17+ and Spring Boot.",
+      "Design and implement microservices architecture.",
+      "Manage and optimize PostgreSQL databases.",
+      "Implement messaging systems using Kafka or RabbitMQ."
+    ],
+    requirements: [
+      "4-6 years of professional experience in Java development.",
+      "Strong expertise in Spring Boot and Microservices.",
+      "Proficiency in PostgreSQL and database design.",
+      "Experience with message brokers like Kafka or RabbitMQ."
+    ]
+  }
+];
 
 export default function Careers() {
   const [pageView, setPageView] = useState("list");
@@ -37,7 +101,7 @@ export default function Careers() {
           {pageView === "list" && (
             <motion.div key="list" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
               <AnimatedSection>
-                <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6">Join our team.</h1>
+                <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6">Join our Journey.</h1>
                 <p className="text-muted text-lg mb-16">Engineering the next generation of Consumer Tech.</p>
               </AnimatedSection>
 
@@ -74,9 +138,21 @@ export default function Careers() {
           )}
 
           {pageView === "details" && selectedJob && (
-            <motion.div key="details" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.3 }} className="max-w-4xl mx-auto">
-              <button onClick={handleBackToList} className="text-muted hover:text-primary flex items-center gap-2 mb-8">
-                <ChevronLeft size={20} /> Back to positions
+            <motion.div
+              key="details"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+              className="max-w-4xl mx-auto pt-10 md:pt-0" // Added pt-10 here
+            >
+              {/* Optimized Back Button */}
+              <button
+                onClick={handleBackToList}
+                className="flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-muted hover:text-primary hover:border-primary/30 transition-all w-fit md:bg-transparent md:border-none md:px-0"
+              >
+                <ChevronLeft size={20} />
+                <span className="text-sm font-medium">Back to positions</span>
               </button>
 
               <div className="glass-card p-8 md:p-12 rounded-[2rem] mb-8">

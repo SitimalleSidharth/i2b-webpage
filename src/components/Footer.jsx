@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -7,7 +7,9 @@ export default function Footer() {
     Company: [{ name: "About Us", href: "/#about" }, { name: "What We Do", href: "/#whatwedo" }, { name: "Careers", href: "/careers" }],
     Legal: [{ name: "Privacy Policy", href: "#" }, { name: "Terms of Service", href: "#" }],
     Social: [
-         { icon: <Mail size={18} />, href: "mailto:contact@i2b.in", label: "Email Contact" }]
+         { icon: <Mail size={18} />, href: "mailto:contact@i2b.in", label: "Email Contact" },
+        // { icon: <Linkedin size={18} />, href: "https://linkedin.com/company/i2btechnologies-pvt-ltd", label: "LinkedIn Profile" }
+        ]
   };
 
   return (
@@ -29,6 +31,8 @@ export default function Footer() {
                 <a
                   key={i}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-11 h-11 md:w-10 md:h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-muted hover:text-primary hover:border-primary transition-all"
                 >

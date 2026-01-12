@@ -91,7 +91,7 @@ export default function Contact() {
               Let's build <br /> something great.
             </h2>
             <p className="text-muted text-[15px] md:text-lg mb-10 leading-relaxed max-w-md">
-              Reach out whether you're a founder with a raw idea or an enterprise seeking an engineering lab.
+              Reach out whether you’re a founder shaping an early idea or an enterprise looking for a trusted partner.
             </p>
 
             <div className="space-y-8">

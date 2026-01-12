@@ -1,6 +1,33 @@
 import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Vision() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    
+    const scrollToSection = () => {
+      const el = document.getElementById("contact");
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    };
+
+    if (pathname !== "/") {
+      // If user is on /careers or another page, go home first then scroll
+      navigate("/");
+      requestAnimationFrame(() => {
+        setTimeout(scrollToSection, 100); // Slight delay to allow home page to mount
+      });
+    } else {
+      // Already on home page, just scroll
+      scrollToSection();
+    }
+  };
+
   return (
     <section className="py-24 md:py-20 px-6">
       <motion.div
@@ -22,6 +49,7 @@ export default function Vision() {
 
           <a
             href="#contact"
+            onClick={handleContactClick}
             className="btn-primary inline-block text-base md:text-lg px-10 md:px-12 py-4 md:py-5"
             aria-label="Contact us to create your vision"
           >
