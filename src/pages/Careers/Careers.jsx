@@ -203,6 +203,9 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null);
   const isGeneral = jobTitle === "General Application";
+  const [errorMsg, setErrorMsg] = useState("");
+const [success, setSuccess] = useState(false);
+
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
@@ -222,12 +225,29 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
     if (f && f.type === "application/pdf") setFile(f);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) return alert("Please upload your resume (PDF)");
-    if (!window.grecaptcha) return alert("Captcha not ready");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setErrorMsg("");
+  setSuccess(false);
 
-    const token = await window.grecaptcha.execute("YOUR_RECAPTCHA_SITE_KEY", { action: "careers" });
+  if (!file) {
+    setErrorMsg("Please upload your resume (PDF)");
+    return;
+  }
+
+  if (!window.grecaptcha) {
+    setErrorMsg("Captcha not ready. Please refresh and try again.");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    const token = await window.grecaptcha.execute(
+      import.meta.env.VITE_RECAPTCHA_SITE_KEY,
+      { action: "careers" }
+    );
+
     const fd = new FormData();
     fd.append("job", jobTitle);
     fd.append("name", e.target.fullname.value);
@@ -238,11 +258,31 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
     fd.append("token", token);
     fd.append("website", e.target.website.value);
 
-    setIsSubmitting(true);
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/careers`, { method: "POST", body: fd });
-    res.ok ? (alert("Application Sent Successfully"), onClose()) : alert("Submission failed");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/careers`, {
+      method: "POST",
+      body: fd
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) throw new Error(data.message || "Submission failed");
+
+    setSuccess(true);
+
+    setTimeout(() => {
+      onClose();
+      setFile(null);
+      setSuccess(false);
+    }, 1800);
+
+  } catch (err) {
+    console.error("Submission Error:", err);
+    setErrorMsg(err.message || "Network error. Please try again.");
+  } finally {
     setIsSubmitting(false);
-  };
+  }
+};
+
 
   return (
     <AnimatePresence>
@@ -254,7 +294,7 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
               <button onClick={onClose} className="absolute top-6 right-6 text-muted hover:text-white"><X size={24} /></button>
               <h2 className="text-2xl font-bold mb-1">{isGeneral ? "Introduce Yourself" : "Apply Now"}</h2>
               <p className="text-primary text-sm mb-6 font-mono">{jobTitle}</p>
-
+              
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input type="text" name="website" className="hidden" />
                 <input name="fullname" className="input w-full bg-white/5 border-white/10" placeholder="Full Name" />
@@ -265,6 +305,15 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
                   {file ? <><CheckCircle className="text-primary mb-2" size={24} /><p>{file.name}</p></> : <><UploadCloud className="text-muted mb-2" size={24} /><p>Upload Resume (PDF) — Required</p></>}
                   <input ref={fileInputRef} type="file" className="hidden" accept=".pdf" onChange={handleFileChange} />
                 </div>
+                {errorMsg && (
+                  <p className="text-red-400 text-sm font-medium">{errorMsg}</p>
+                )}
+
+                {success && (
+                  <p className="text-green-400 text-sm font-medium">
+                    Application sent successfully. We’ll get back to you shortly.
+                  </p>
+                )}
                 <button disabled={isSubmitting} type="submit" className="btn-primary w-full py-4 mt-2">
                   {isSubmitting ? "Sending..." : "Submit Application"}
                 </button>

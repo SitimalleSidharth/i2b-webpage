@@ -65,7 +65,7 @@ export default function Contact() {
     if (!window.grecaptcha) return setError("Captcha not ready")
     setLoading(true)
     try {
-      const token = await window.grecaptcha.execute("6LftCUQsAAAAAI9fyKiCErmueDxUXxgaow6aZcnS", { action: "contact" });
+      const token = await window.grecaptcha.execute(`${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`, { action: "contact" });
 
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: "POST",
