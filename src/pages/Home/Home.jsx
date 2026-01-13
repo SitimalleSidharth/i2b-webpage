@@ -9,10 +9,16 @@ import Contact from "../../components/Contact";
 import Philosophy from "./Philosophy";
 import Portfolio from "./Portfolio";
 import ContactUs from "../../components/Contact2";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   return (
     <main>
+      <Helmet>
+        <title>I2B Technologies | Venture Studio & AI Labs</title>
+        <meta name="description" content="I2B is a venture studio building AI-first consumer & B2B technology companies. We partner with founders to build scalable enterprise platforms." />
+        <link rel="canonical" href="https://i2b.in/" />
+      </Helmet>
       <Hero />
       
       <WhatWeDo />

@@ -8,24 +8,54 @@ export default function Contact() {
   const [resetTimer, setResetTimer] = useState(10)
   const [resetting, setResetting] = useState(false)
 
+
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "", // Changed from firstName
+    mobile: "",   // Changed from lastName
     email: "",
     interest: "",
     message: "",
     website: ""
-  })
+  });
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const validate = () => {
-    if (!form.firstName || !form.lastName) return "Name is required"
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Invalid email address"
-    if (!form.interest) return "Please select an interest"
-    if (form.message.length < 15) return "Message too short"
-    return null
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // 1. Prevent non-numeric characters in mobile
+    if (name === "mobile") {
+      const numericValue = value.replace(/\D/g, ""); // Removes all non-digits
+
+      if (numericValue.length <= 10) {
+        setForm({ ...form, [name]: numericValue });
+      }
+
+      // setForm({ ...form, [name]: numericValue });
+      return;
+    }
+
+    // 2. Prevent spaces in email
+    if (name === "email") {
+      const noSpaceValue = value.replace(/\s/g, ""); // Removes all spaces
+      setForm({ ...form, [name]: noSpaceValue });
+      return;
+    }
+
+    setForm({ ...form, [name]: value });
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
+  const validate = () => {
+    if (!form.fullName) return "Full name is required";
+    if (!form.mobile) return "Mobile number is required";
+    if (!/^\d{10}$/.test(form.mobile.replace(/\s/g, ""))) {
+      return "Enter a valid mobile number";
+    }
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Invalid email address";
+    if (!form.interest) return "Please select an interest";
+    if (form.message.length < 15) return "Message too short";
+    return null;
+  };
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -37,10 +67,10 @@ export default function Contact() {
     try {
       const token = await window.grecaptcha.execute("6LftCUQsAAAAAI9fyKiCErmueDxUXxgaow6aZcnS", { action: "contact" });
 
-      const res = await fetch("http://localhost:3000/api/contact", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...form, token })
+        body: JSON.stringify({ ...form, token })
       })
       if (!res.ok) throw new Error()
       setSubmitted(true)
@@ -62,14 +92,15 @@ export default function Contact() {
           clearInterval(interval)
           setSubmitted(false)
           setResetting(false)
+          // Update reset logic in useEffect
           setForm({
-            firstName: "",
-            lastName: "",
+            fullName: "",
+            mobile: "",
             email: "",
             interest: "",
             message: "",
             website: ""
-          })
+          });
           return 10
         }
         return t - 1
@@ -82,9 +113,9 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
-        
+
         <div className="glass-card rounded-[2.3rem] md:rounded-[3rem] p-8 md:p-16 grid md:grid-cols-2 gap-16 relative overflow-hidden">
-        
+
           {/* Left */}
           <div>
             <h2 className="font-heading text-[2.2rem] md:text-5xl font-bold mb-6 text-reveal">
@@ -95,7 +126,7 @@ export default function Contact() {
             </p>
 
             <div className="space-y-8">
-              <a 
+              <a
                 href="https://maps.app.goo.gl/2Lguo8p7Xmi8Ermu9"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -108,8 +139,8 @@ export default function Contact() {
                   <div>
                     <p className="text-[10px] text-muted font-mono uppercase">Location</p>
                     <p className="text-white font-medium">
-                      Mahaveer Gateway <br/>
-                      Unit No.03,14th Floor, Bull Circle, Madhava Reddy Colony <br/>
+                      Mahaveer Gateway <br />
+                      Unit No.03,14th Floor, Bull Circle, Madhava Reddy Colony <br />
                       Nanakramguda, Gachibowli, Hyderabad, Telangana 500032
                     </p>
                   </div>
@@ -135,16 +166,45 @@ export default function Contact() {
                 <input type="text" name="website" className="hidden" onChange={handleChange} />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input name="firstName" required type="text" placeholder="First Name" className="input" onChange={handleChange} />
-                  <input name="lastName" required type="text" placeholder="Last Name" className="input" onChange={handleChange} />
+                  <input
+                    name="fullName"
+                    required
+                    type="text"
+                    placeholder="Full Name"
+                    className="input"
+                    value={form.fullName}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="mobile"
+                    required
+                    type="tel" // Standard for phone numbers
+                    inputMode="numeric" // Forces numeric keypad on mobile
+                    placeholder="Mobile Number"
+                    className="input"
+                    value={form.mobile}
+                    onChange={handleChange}
+                  />
                 </div>
 
-                <input name="email" required type="email" placeholder="Email Address" className="input" onChange={handleChange} />
 
+
+
+
+                <input
+                  name="email"
+                  required
+                  type="email"
+                  placeholder="Email Address"
+                  className="input"
+                  value={form.email} // Ensure value is controlled
+                  onChange={handleChange}
+                />
                 <select name="interest" required className="input appearance-none bg-panel" onChange={handleChange}>
                   <option value="">Interested in...</option>
-                  <option value="Startup Incubation">Startup Incubation</option>
-                  <option value="Product Engineering">Product Engineering</option>
+                  <option value="Startup Idea & Venture Collaboration">Startup Idea & Venture Collaboration</option>
+                  <option value="Software Products & Solutions">Software Products & Solutions</option>
+                  <option value="Career Opportunities">Career Opportunities</option>
                   <option value="Other">Other</option>
                 </select>
 

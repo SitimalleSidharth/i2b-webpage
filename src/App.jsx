@@ -4,6 +4,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CareersTwo from "./pages/Careers/Careers2.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 
 // Lazy Load for Performance
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
@@ -46,12 +47,14 @@ export default function App() {
         
         <Navbar />
         
-        <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary">I2B_LOADING...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/careers" element={<Careers />} />
-          </Routes>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<div className="h-screen bg-bg flex items-center justify-center font-mono text-primary">I2B_LOADING...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/careers" element={<Careers />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
 
         <Footer />
       </div>

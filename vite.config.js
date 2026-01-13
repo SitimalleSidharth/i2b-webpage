@@ -16,6 +16,9 @@ export default defineConfig({
       svg: { include:false}
     }),
   ],
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   build: {
     rollupOptions: {
       output: {

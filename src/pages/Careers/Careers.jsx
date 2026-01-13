@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle, ArrowRight, ChevronLeft, UploadCloud } from "lucide-react";
 import AnimatedSection from "../../components/AnimatedSection";
+import { Helmet } from "react-helmet-async";
 
 // const roles = [ ... ]
 const roles = [
@@ -95,6 +96,11 @@ export default function Careers() {
 
   return (
     <section className="min-h-screen bg-bg px-6 py-32 relative overflow-x-hidden">
+      <Helmet>
+        <title>Careers | I2B Technologies</title>
+        <meta name="description" content="Join I2B Technologies. We are hiring AI Engineers, Cloud Architects, and Product Builders to shape the future of intelligent business." />
+        <link rel="canonical" href="https://i2b.in/careers" />
+      </Helmet>
       <div className="max-w-5xl mx-auto relative z-10">
         <AnimatePresence mode="wait">
 
@@ -233,7 +239,7 @@ function ApplicationModal({ isOpen, onClose, jobTitle }) {
     fd.append("website", e.target.website.value);
 
     setIsSubmitting(true);
-    const res = await fetch("/api/careers", { method: "POST", body: fd });
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/careers`, { method: "POST", body: fd });
     res.ok ? (alert("Application Sent Successfully"), onClose()) : alert("Submission failed");
     setIsSubmitting(false);
   };
